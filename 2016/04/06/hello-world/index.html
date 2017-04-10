@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="关于互联网与设计、黑客与画家 | 黄玄，Web &amp; Mobile Lover，Front-End Engineer，UX Designer | 这里是 @XUR 的个人博客，与你一起发现更大的世界。">
+    <meta name="description" content="">
     <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
         
-          postName - XUR的博客 | XUR Blog
+          sublime实现markdown编写及预览 - XUR的博客 | XUR Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/pretty">
+    <link rel="canonical" href="http://yoursite.com/2016/04/06/hello-world/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,6 +91,27 @@
                         </li>
                         
                     
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
                     
                 </ul>
             </div>
@@ -138,7 +159,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('img/post-bg-re-vs-ng2.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -148,12 +169,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
+                        
                     </div>
-                    <h1>postName</h1>
+                    <h1>sublime实现markdown编写及预览</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
-                        Posted by John Doe on
-                        2017-04-08
+                        Posted by XUR on
+                        2016-04-06
                     </span>
                 </div>
             </div>
@@ -172,7 +195,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h2 id="sublime实现markdown编写及预览"><a href="#sublime实现markdown编写及预览" class="headerlink" title="sublime实现markdown编写及预览"></a>sublime实现markdown编写及预览</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">个人使用sublime编写markdown的频率比较高，为了编写和预览，就整理了以下的方法。</div></pre></td></tr></table></figure>
+<h3 id="安装Sublime-Text"><a href="#安装Sublime-Text" class="headerlink" title="安装Sublime Text"></a>安装Sublime Text</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">无论是Sublime2还是Sublime3，都是支持markdown标记语言的，所以我们不必为选择那个版本而纠结。</div></pre></td></tr></table></figure>
+<h3 id="安装需要的包"><a href="#安装需要的包" class="headerlink" title="安装需要的包"></a>安装需要的包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">为了达成我们的目标，我们通常来说会安装下面的一些package。</div><div class="line">    package control install</div><div class="line">    markdown editing</div><div class="line">    markdown preview</div><div class="line">具体步骤：</div><div class="line">    按住 Ctrl + Shift + P调出一个弹出的输入框</div><div class="line">    输入package control install，等待左下角的缓存结束</div><div class="line">    在输入框分别输入 markdown editing 和 markdown preview</div><div class="line">    我们就完成我们需要的包的安装了，接下来重启Sublime之后即可使用。</div></pre></td></tr></table></figure>
+<h3 id="MarkdownPreview介绍"><a href="#MarkdownPreview介绍" class="headerlink" title="MarkdownPreview介绍"></a>MarkdownPreview介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在文件最前面添加[TOC]会自动生成目录</div><div class="line">按Ctrl + B会自动生成网页html；</div></pre></td></tr></table></figure>
+<h3 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">理论上到这里就该结束了，但是上面的步骤比较繁琐，每次修改文档后都需要Ctrl + B生成html文件，然后再在浏览器上刷新显示。接下来我们做个自定义的配置。</div><div class="line"></div><div class="line">选择菜单preference–&gt; key bunding user(首选项–&gt; 按键绑定-用户)</div><div class="line">输入：</div><div class="line">    [</div><div class="line">        &#123;<span class="string">"keys"</span>: [<span class="string">"alt+m"</span>], <span class="string">"command"</span>: <span class="string">"markdown_preview"</span>, <span class="string">"args"</span>: &#123; <span class="string">"target"</span>: <span class="string">"browser"</span>&#125;&#125;</div><div class="line">    ]</div></pre></td></tr></table></figure>
+<h3 id="OmniMarkupPreviwer"><a href="#OmniMarkupPreviwer" class="headerlink" title="OmniMarkupPreviwer"></a>OmniMarkupPreviwer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">实时在浏览器中预览，而MarkdownPreview是需要手动生成的和手动刷新的。</div><div class="line">如果双屏的话，应该具有不错的体验。</div></pre></td></tr></table></figure>
+<h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">按住 Ctrl + Shift + P调出一个弹出的输入框</div><div class="line">输入package control install,等待左下角的缓存结束</div><div class="line">在输入框输入 OmniMarkupPreviwer，安装</div></pre></td></tr></table></figure>
+<h4 id="2-快捷键"><a href="#2-快捷键" class="headerlink" title="2 快捷键"></a>2 快捷键</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Ctrl + Alt + O: Preview Markup <span class="keyword">in</span> Browser</div><div class="line">Ctrl + Alt + X: Export Markup as HTML</div><div class="line">Ctrl + Alt + C: Copy Markup as HTML</div></pre></td></tr></table></figure>
+
 
                 <hr>
 
@@ -180,10 +211,10 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/pretty" data-toggle="tooltip" data-placement="top" title="Hello World">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/2017/04/08/postName/" data-toggle="tooltip" data-placement="top" title="postName">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -191,9 +222,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="pretty"
-                        data-title="postName"
-                        data-url="http://yoursite.com/pretty" >
+                        data-thread-key="2016/04/06/hello-world/"
+                        data-title="sublime实现markdown编写及预览"
+                        data-url="http://yoursite.com/2016/04/06/hello-world/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -219,6 +250,8 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
+                        
                     </div>
                 </section>
                 
@@ -229,8 +262,6 @@
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
 
-                    
-                        <li><a href="undefined" target="_blank">undefined</a></li>
                     
                         <li><a href="http://mida.re/" target="_blank">乱序</a></li>
                     
@@ -377,13 +408,8 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; XUR Blog 2017 
-                    <br>
-                    Theme by Hux 
-                    <span style="display: inline-block; margin: 0 5px;">
-                        <i class="fa fa-heart"></i>
-                    </span> 
-                    Ported by Kaijun
+                    Copyright &copy; XUR Blog 2017
+
                 </p>
             </div>
         </div>
@@ -412,14 +438,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -479,7 +505,6 @@
 
 
 <!-- Side Catalog -->
-
 
 
 
