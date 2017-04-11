@@ -13,11 +13,11 @@
 
     <title>
         
-          XUR的博客 | XUR Blog
+          sublime实现markdown编写及预览 - XUR的博客 | XUR Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/">
+    <link rel="canonical" href="http://yoursite.com/2016/04/06/makedown/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -151,261 +151,115 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>XUR Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">一生想做浪漫极客</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
+                        
+                    </div>
+                    <h1>sublime实现markdown编写及预览</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by XUR on
+                        2016-04-06
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="sublime实现markdown编写及预览"><a href="#sublime实现markdown编写及预览" class="headerlink" title="sublime实现markdown编写及预览"></a>sublime实现markdown编写及预览</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">个人使用sublime编写markdown的频率比较高，为了编写和预览，就整理了以下的方法。</div></pre></td></tr></table></figure>
+<h3 id="安装Sublime-Text"><a href="#安装Sublime-Text" class="headerlink" title="安装Sublime Text"></a>安装Sublime Text</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">无论是Sublime2还是Sublime3，都是支持markdown标记语言的，所以我们不必为选择那个版本而纠结。</div></pre></td></tr></table></figure>
+<h3 id="安装需要的包"><a href="#安装需要的包" class="headerlink" title="安装需要的包"></a>安装需要的包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">为了达成我们的目标，我们通常来说会安装下面的一些package。</div><div class="line">    package control install</div><div class="line">    markdown editing</div><div class="line">    markdown preview</div><div class="line">具体步骤：</div><div class="line">    按住 Ctrl + Shift + P调出一个弹出的输入框</div><div class="line">    输入package control install，等待左下角的缓存结束</div><div class="line">    在输入框分别输入 markdown editing 和 markdown preview</div><div class="line">    我们就完成我们需要的包的安装了，接下来重启Sublime之后即可使用。</div></pre></td></tr></table></figure>
+<h3 id="MarkdownPreview介绍"><a href="#MarkdownPreview介绍" class="headerlink" title="MarkdownPreview介绍"></a>MarkdownPreview介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在文件最前面添加[TOC]会自动生成目录</div><div class="line">按Ctrl + B会自动生成网页html；</div></pre></td></tr></table></figure>
+<h3 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">理论上到这里就该结束了，但是上面的步骤比较繁琐，每次修改文档后都需要Ctrl + B生成html文件，然后再在浏览器上刷新显示。接下来我们做个自定义的配置。</div><div class="line"></div><div class="line">选择菜单preference–&gt; key bunding user(首选项–&gt; 按键绑定-用户)</div><div class="line">输入：</div><div class="line">    [</div><div class="line">        &#123;<span class="string">"keys"</span>: [<span class="string">"alt+m"</span>], <span class="string">"command"</span>: <span class="string">"markdown_preview"</span>, <span class="string">"args"</span>: &#123; <span class="string">"target"</span>: <span class="string">"browser"</span>&#125;&#125;</div><div class="line">    ]</div></pre></td></tr></table></figure>
+<h3 id="OmniMarkupPreviwer"><a href="#OmniMarkupPreviwer" class="headerlink" title="OmniMarkupPreviwer"></a>OmniMarkupPreviwer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">实时在浏览器中预览，而MarkdownPreview是需要手动生成的和手动刷新的。</div><div class="line">如果双屏的话，应该具有不错的体验。</div></pre></td></tr></table></figure>
+<h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">按住 Ctrl + Shift + P调出一个弹出的输入框</div><div class="line">输入package control install,等待左下角的缓存结束</div><div class="line">在输入框输入 OmniMarkupPreviwer，安装</div></pre></td></tr></table></figure>
+<h4 id="2-快捷键"><a href="#2-快捷键" class="headerlink" title="2 快捷键"></a>2 快捷键</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Ctrl + Alt + O: Preview Markup <span class="keyword">in</span> Browser</div><div class="line">Ctrl + Alt + X: Export Markup as HTML</div><div class="line">Ctrl + Alt + C: Copy Markup as HTML</div></pre></td></tr></table></figure>
 
 
-<div class="post-preview">
+                <hr>
 
-    <a href="/2016/06/04/PHP数组的相关操作/">
-        <h2 class="post-title">
-            PHP数组的相关操作
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            创建数组索引数组索引为整数，如果没有指定索引值则默认为零，依次递增。
-12//索引数组$array1 = array('a', 'b', 'c', 'd');
-关联数组数组的key为字符串。1234567//关联数组$arr2 = array(         "a" =&gt; 1,         "b" =&gt; 2,         "c" =&gt; 3,      "d" =&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by XUR on
-        2016-06-04
-    </p>
+                
 
-</div>
-<hr>
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/03/02/hello/" data-toggle="tooltip" data-placement="top" title="hello world">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/05/04/jquery/" data-toggle="tooltip" data-placement="top" title="初级jQuery教程">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-<div class="post-preview">
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/04/06/makedown/"
+                        data-title="sublime实现markdown编写及预览"
+                        data-url="http://yoursite.com/2016/04/06/makedown/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
 
-    <a href="/2016/06/01/PHP资源列表教程/">
-        <h2 class="post-title">
-            PHP资源列表教程
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            PHP资源列表教程ziadoz在 Github发起维护的一个PHP资源列表，内容包括：库、框架、模板、安全、代码分析、日志、第三方库、配置工具、Web 工具、书籍、电子书、经典博文等等。伯乐在线对该资源列表进行了翻译，译文如下：﻿
-依赖管理﻿﻿
-依赖和包管理库﻿﻿
-Composer/ Packagist：一个包和依赖管理器﻿
-Composer Installers：一个多框架Composer......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by XUR on
-        2016-06-01
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/04/jquery/">
-        <h2 class="post-title">
-            初级jQuery教程
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            jQuery 是什么 ?是封装了常用 JS 操作函数的一个库文件.有没有其他开源库？
-Prototype.js  历史比较早 , 是 SamStephenson 写的一个非常优雅的 javascript 基础类库，对 javascript 做了大量的扩展，而且很好的支持 Ajax  ，国内外有多个基于此类库开发的子项目 .
-Ext.js ExtJS 是一种主要用于创建前端用户界面，是一个基本......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by XUR on
-        2016-05-04
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/04/06/makedown/">
-        <h2 class="post-title">
-            sublime实现markdown编写及预览
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            sublime实现markdown编写及预览写在前面1个人使用sublime编写markdown的频率比较高，为了编写和预览，就整理了以下的方法。
-安装Sublime Text1无论是Sublime2还是Sublime3，都是支持markdown标记语言的，所以我们不必为选择那个版本而纠结。
-安装需要的包123456789为了达成我们的目标，我们通常来说会安装下面的一些package。   ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by XUR on
-        2016-04-06
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/03/02/hello/">
-        <h2 class="post-title">
-            hello world
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            hello worldHello World ，中文意思：你好，世界。世界上的第一个程序就是Hello World，由Brian Kernighan创作。“Hello, world”程序是指在计算机屏幕上输出“Hello,world”这行字符串的计算机程序，“hello, world”的中文意思是“世界，你好”。这个例程在Brian Kernighan 和Dennis M. Ritchie合......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by XUR on
-        2016-03-02
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-
-                <!-- 如果开启评论功能 -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar-xu.jpg" />
-                        
-
-                        
-                            <p>你能做到的，比想像的更多。</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/XURpro">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/XURpro">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.facebook.com/XURpro">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/XURpro">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -436,9 +290,69 @@ Ext.js ExtJS 是一种主要用于创建前端用户界面，是一个基本....
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'XURblog';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

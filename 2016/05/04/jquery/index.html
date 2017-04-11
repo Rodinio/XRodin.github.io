@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          初级jQuery教程 - XUR的博客 | XUR Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2016/05/04/jquery/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XUR Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#jquery" title="jquery">jquery</a>
+                        
+                    </div>
+                    <h1>初级jQuery教程</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by XUR on
+                        2016-05-04
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="jQuery-是什么"><a href="#jQuery-是什么" class="headerlink" title="jQuery 是什么 ?"></a>jQuery 是什么 ?</h2><p>是封装了常用 JS 操作函数的一个库文件.<br>有没有其他开源库？</p>
+<p>Prototype.js  历史比较早 , 是 SamStephenson 写的一个非常优雅的 javascript 基础类库，对 javascript 做了大量的扩展，而且很好的支持 Ajax  ，国内外有多个基于此类库开发的子项目 .</p>
+<p>Ext.js ExtJS 是一种主要用于创建前端用户界面，是一个基本与后台技术无关的前端 ajax 框架。功能丰富，无人能出其右。<br>强势在 UI 操作上 , 可以很方便帮我们创建一个表格 / 表单 , 漂浮的窗口 ,ajax 等等 . 大而全 . 但确定需求上做的不好 .<br>YUI:Yahoo! UI,  雅虎开源发布的一款 js 库 .</p>
+<p>JQuery  名称解释<br>JQuery = Javascript + Query ( 查询 )<br>Jquery 意思即指 :  强大的 DOM 节点查询</p>
+<p>版本说明 :<br>1.x  系列<br>2.x  系列<br>mobile 系列 :  针对移动设备<br>1.x ,2.x API  都是一样的.<br>但是 2.x  不再兼容低版本 IE, 必须是 IE9 及以上</p>
+<p>下载注意<br>从官方网站下载时 , jquery 的文件名格式如下 :<br>Jquery-1.x.x-min.js<br>或者 jquery-1.x.x.js<br>2 者功能没有区别 , 只在大小上有区别 ,min 是压缩后的代码 .<br>即把空行 , 空白等压缩掉 , 把变量名字变短 .<br>而文件比较大的没压缩的源文件 .<br>所以 , 当学习时 , 使用没压缩的源文件 , 但是在线网站 , 使用压缩版 , 可以提高下载速度  </p>
+<h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt; 基本选择器 &lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div id=<span class="string">"test1"</span>&gt;id <span class="built_in">test</span>1&lt;/div&gt;</div><div class="line">&lt;div class=<span class="string">"test2"</span>&gt;class <span class="built_in">test</span>2&lt;/div&gt;</div><div class="line">&lt;div class=<span class="string">"test2"</span>&gt;class <span class="built_in">test</span>2&lt;/div&gt;</div><div class="line">&lt;p&gt;p1&lt;/p&gt;</div><div class="line">&lt;p&gt;p2&lt;/p&gt;</div><div class="line">&lt;p&gt;p3&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">//id  选择器</div><div class="line">$(<span class="string">'#test1'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);</div><div class="line">// 标签选择器</div><div class="line">$(<span class="string">'p'</span>).css(<span class="string">'background'</span>,<span class="string">'blue'</span>);</div><div class="line">// 类选择器</div><div class="line">$(<span class="string">'.test2'</span>).css(<span class="string">'background'</span>,<span class="string">'green'</span>);</div><div class="line">//*</div><div class="line">$(<span class="string">'*'</span>).css(<span class="string">'background'</span>,<span class="string">'pink'</span>);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;p&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> /&gt;</div><div class="line">&lt;span&gt;1&lt;/span&gt;</div><div class="line">&lt;span&gt;2&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> /&gt;</div><div class="line">&lt;span&gt;3&lt;/span&gt;</div><div class="line">&lt;span&gt;4&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> /&gt;</div><div class="line">&lt;span&gt;5&lt;/span&gt;</div><div class="line">&lt;span&gt;6&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;div&gt;&lt;span&gt;7&lt;/span&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">//div 下的 span</div><div class="line">$(<span class="string">'div span'</span>).css(<span class="string">'background'</span>,<span class="string">'blue'</span>)</div><div class="line">// 紧挨着的下一个元素 , 每一个元素之后的 1 个 next 元素被选中</div><div class="line">//$(<span class="string">'input + span'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);</div><div class="line">// 紧挨着的所有同辈元素 , 每一个元素之后的所有同辈元素</div><div class="line">$(<span class="string">'input ~ span'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;p&gt;Email:&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"email"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 密码 :&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"password"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 重复密码 :&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"repassword"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 学号 :&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"stunum"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 学分 :&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"stuscore"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 秘密 :&lt;input <span class="built_in">type</span>=<span class="string">"password"</span> &gt;&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">//<span class="built_in">type</span> 选择</div><div class="line">$(<span class="string">'input[type=password]'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);</div><div class="line">//name  选择</div><div class="line">$(<span class="string">'input[name=email]'</span>).css(<span class="string">'background'</span>,<span class="string">'green'</span>);</div><div class="line">//name 不等于 email</div><div class="line">$(<span class="string">'input[name!=email]'</span>).css(<span class="string">'background'</span>,<span class="string">'red'</span>);</div><div class="line">// 正则选择</div><div class="line">$(<span class="string">'input[name$=password]'</span>).css(<span class="string">'background'</span>,<span class="string">'orange'</span>);   </div><div class="line">//都用password 结尾</div><div class="line">$(<span class="string">'input[name^=stu]'</span>).css(<span class="string">'background'</span>,<span class="string">'blue'</span>);  </div><div class="line">// 开头是 stu</div><div class="line">$(<span class="string">'input[name*=pass]'</span>).css(<span class="string">'background'</span>,<span class="string">'orange'</span>);</div><div class="line">// 含有 pass</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="基础过滤器"><a href="#基础过滤器" class="headerlink" title="基础过滤器"></a>基础过滤器</h3><p>如果选择器选出的结果仍不够细 , 可以用过滤器 , 进一步筛选 .<br>过滤器一般写在 “ 选择器 “ 之后 , 如 “ 选择器 : 过滤器 “<br>基础过滤器是根据对象的 “ 索引 “ 值来查找<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">&lt;li&gt; 导航 1&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 2&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 3&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 4&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 5&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 6&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">// 第一个</div><div class="line">$(<span class="string">'li:first'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);</div><div class="line">// 最后一个</div><div class="line">$(<span class="string">'li:last'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);  </div><div class="line">// 奇数</div><div class="line">$(<span class="string">'li:odd'</span>).css(<span class="string">'background'</span>,<span class="string">'green'</span>);</div><div class="line">// 偶数</div><div class="line">$(<span class="string">'li:even'</span>).css(<span class="string">'background'</span>,<span class="string">'orange'</span>);  </div><div class="line">// 具体第几个 从 0 开始</div><div class="line">$(<span class="string">'li:eq(3)'</span>).css(<span class="string">'background'</span>,<span class="string">'purple'</span>);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">```  </div><div class="line"><span class="comment">### 内容过滤器  </span></div><div class="line">```bash</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;style media=<span class="string">"screen"</span>&gt;</div><div class="line">p&#123;</div><div class="line">height: 20px;</div><div class="line">border: 1px solid blue;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;table border=<span class="string">"1"</span>&gt;</div><div class="line">&lt;tr&gt;</div><div class="line">&lt;td&gt; 姓名 &lt;/td&gt;</div><div class="line">&lt;td&gt; 性别 &lt;/td&gt;</div><div class="line">&lt;td&gt; 年龄 &lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;tr&gt;</div><div class="line">&lt;td&gt; 马云 &lt;/td&gt;</div><div class="line">&lt;td&gt; 男 &lt;/td&gt;</div><div class="line">&lt;td&gt;26&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;tr&gt;</div><div class="line">&lt;td&gt; 奶茶妹 &lt;/td&gt;</div><div class="line">&lt;td&gt; 女 &lt;/td&gt;</div><div class="line">&lt;td&gt;23&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;tr&gt;</div><div class="line">&lt;td&gt; 强东 &lt;/td&gt;</div><div class="line">&lt;td&gt; 男 &lt;/td&gt;</div><div class="line">&lt;td&gt;24&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;tr&gt;</div><div class="line">&lt;td&gt; 金星 &lt;/td&gt;</div><div class="line">&lt;td&gt;&lt;/td&gt;</div><div class="line">&lt;td&gt;&lt;span&gt;22&lt;/span&gt;&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div><div class="line">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;a&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">// 找 td 中含有 ‘ 女 ’ 字的</div><div class="line">$(<span class="string">'td:contains( 女 )'</span>).css(<span class="string">'background'</span>,<span class="string">'red'</span>);</div><div class="line">// 找 td 为空的</div><div class="line">$(<span class="string">'td:empty'</span>).css(<span class="string">'background'</span>,<span class="string">'yellow'</span>);</div><div class="line">// 找出不为空的 P 标签 (P 标签下没有内容的 )--&gt; 找到当爹的标签 p</div><div class="line">$(<span class="string">'p:parent'</span>).css(<span class="string">'background'</span>,<span class="string">'orange'</span>);</div><div class="line">// 找出 td 下，含有 span 标签的 --&gt; 标签下有标签的</div><div class="line">$(<span class="string">'td:has(span)'</span>).css(<span class="string">'background'</span>,<span class="string">'blue'</span>);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="表单类型过滤器"><a href="#表单类型过滤器" class="headerlink" title="表单类型过滤器"></a>表单类型过滤器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"password"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"radio"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">// 旧版</div><div class="line">$(<span class="string">'input[type=text]'</span>).css(<span class="string">'background'</span>,<span class="string">'red'</span>);</div><div class="line">// 表单类型选择</div><div class="line">$(<span class="string">'input:password'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="可见性过滤器"><a href="#可见性过滤器" class="headerlink" title="可见性过滤器"></a>可见性过滤器</h3><p>可见性过滤器 :<br>:hidden<br>匹配所有不可见元素，如果使用 css 的 visibility 属性让元素不显示但是占位，则不属于 hidden 了<br>查找 display:none 的 tr 元素， $(“tr:hidden”)<br>:visible<br>匹配所有可见元素<br>查找所有 display 不为 none 的元素， $(“tr:visible”)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">" 一起分享 "</span> onclick=<span class="string">"share();"</span> /&gt;</div><div class="line">&lt;div style=<span class="string">"display:none"</span>&gt; 我是隐藏内容 &lt;/div&gt;</div><div class="line">&lt;div&gt; 我是显示内容 &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">share</span></span>()&#123;</div><div class="line">//div:hidden 找到隐藏的部分</div><div class="line">$(<span class="string">'div:hidden'</span>).css(<span class="string">'display'</span>,<span class="string">'block'</span>)</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="子元素过滤器"><a href="#子元素过滤器" class="headerlink" title="子元素过滤器"></a>子元素过滤器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div&gt;</div><div class="line">&lt;p&gt;a&lt;/p&gt;</div><div class="line">&lt;p&gt;b&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div&gt;</div><div class="line">&lt;p&gt;c&lt;/p&gt;</div><div class="line">&lt;p&gt;d&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">&lt;li&gt;&lt;a href=<span class="string">""</span>&gt; 导航 &lt;/a&gt;&lt;/li&gt;</div><div class="line">&lt;li&gt;&lt;span&gt;s&lt;/span&gt;&lt;a href=<span class="string">""</span>&gt; 导航 &lt;/a&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">// 同一层次下，最后一个 P 标签</div><div class="line">$(<span class="string">'p:last-of-type'</span>).css(<span class="string">'background'</span>,<span class="string">'gray'</span>);</div><div class="line">// 匹配 li 下的独生 a 标签</div><div class="line">$(<span class="string">'li a:only-child'</span>).css(<span class="string">'background'</span>,<span class="string">'blue'</span>);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="操作节点的普通属性"><a href="#操作节点的普通属性" class="headerlink" title="操作节点的普通属性"></a>操作节点的普通属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"./jq.js"</span>&gt;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;img src=<span class="string">"../JS/off.png"</span> alt=<span class="string">""</span> onclick=<span class="string">"kai()"</span>/&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">kai</span></span>()&#123;</div><div class="line">// 判断 attr 可以获取元素的普通属性</div><div class="line"><span class="keyword">if</span>( $(<span class="string">'img'</span>).attr(<span class="string">'src'</span>).indexOf(<span class="string">'off'</span>) &gt;= 0 )&#123;</div><div class="line">// 此处注意 : 如果你写第二个参数就是改变值 , 不写就是获取</div><div class="line">$(<span class="string">'img'</span>).attr(<span class="string">'src'</span> , <span class="string">'../JS/on.png'</span>);</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">$(<span class="string">'img'</span>).attr(<span class="string">'src'</span>,<span class="string">'../JS/off.png'</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="jQuery-对象与-DOM-对象的关系与转换"><a href="#jQuery-对象与-DOM-对象的关系与转换" class="headerlink" title="jQuery 对象与 DOM 对象的关系与转换"></a>jQuery 对象与 DOM 对象的关系与转换</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">&lt;h1&gt;jQuery 对象与 DOM 对象的关系与转换 &lt;/h1&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">&lt;li&gt; 导航 1&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 2&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 3&lt;/li&gt;</div><div class="line">&lt;li&gt; 导航 4&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;p id=<span class="string">"test"</span>&gt;<span class="built_in">test</span>&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script&gt;</div><div class="line">// 没有效果并且报错，充分证明 $( 选择器 ) 返回值不是一个 DOM  对象</div><div class="line">//$(<span class="string">'#test'</span>).style.background = <span class="string">'blue'</span>;</div><div class="line">// 没有效果并报错，证明 DOM  对象也不是 $() 的返回值</div><div class="line">//var <span class="built_in">test</span> = document.getElementById(<span class="string">'test'</span>);</div><div class="line">//test.css(<span class="string">'background'</span>,<span class="string">'blue'</span>);</div><div class="line">//$() 返回的到底是什么？</div><div class="line">// 是对象，但不是 DOM  对象，而是 JQuery 对象</div><div class="line">/*</div><div class="line">* jQuery 对象与 DOM 对象是什么关系？</div><div class="line">* jQuery 对象按选择器，选中 1 个或者多个 DOM 对象，</div><div class="line">*  把这些 DOM 对象，放在 jQuery 对象上，</div><div class="line">*  索引从 0  开始</div><div class="line">* */</div><div class="line">//console.log($(<span class="string">'li'</span>));</div><div class="line">//jQuery 对象转化为 DOM 对象，直接 [ 索引 ] 取值即可</div><div class="line">//$(<span class="string">'li'</span>)[2].style.background = <span class="string">'blue'</span>;</div><div class="line">// 找手册 . 也可以用 get( 索引 ) 方法</div><div class="line">//$(<span class="string">'li'</span>).get(3).style.background = <span class="string">'blue'</span>;</div><div class="line">//DOM 对象转化为 jQuery 对象，直接把 DOM 对象当作值或者参数传给 $()</div><div class="line">var <span class="built_in">test</span> = document.getElementById(<span class="string">'test'</span>)[0];</div><div class="line">$(<span class="built_in">test</span>).css(<span class="string">'background'</span>,<span class="string">'green'</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="jQuery-对象的遍历"><a href="#jQuery-对象的遍历" class="headerlink" title="jQuery 对象的遍历"></a>jQuery 对象的遍历</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">&lt;h1&gt; 遍历 jQuery 对象的内部的 DOM 对象 &lt;/h1&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">" 反选 "</span> onclick=<span class="string">"fan()"</span> /&gt;</div><div class="line">&lt;p&gt; 选择 1:&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 选择 1:&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 选择 1:&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 选择 1:&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 选择 1:&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script&gt;</div><div class="line">/*</div><div class="line">// 面向过程的思路</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">fan</span></span>()&#123;</div><div class="line">var cbs = $(<span class="string">'input:checkbox'</span>);</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;cbs.length;i++)&#123;</div><div class="line"><span class="keyword">if</span>($(cbs[i]).prop(<span class="string">'checked'</span>))&#123;</div><div class="line">$(cbs[i]).prop(<span class="string">'checked'</span>,<span class="literal">false</span>);</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">$(cbs[i]).prop(<span class="string">'checked'</span>,<span class="literal">true</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">*/</div><div class="line">/*</div><div class="line">// 面向函数式的思路，回调函数</div><div class="line">// 系统函数 each() -&gt; 每一个，一个一个往下走，</div><div class="line">// 只带着往下走，每走一步的具体操作，你说了算</div><div class="line">// 在这个回调中 ,this 是谁 ?</div><div class="line">// 在循环过程中，循环到那个 DOM 对象，回调函数中的 this 就是指向哪个 DOM 对象</div><div class="line">*/</div><div class="line">/*<span class="keyword">function</span> <span class="function"><span class="title">fan</span></span>() &#123;</div><div class="line">$(<span class="string">'input:checkbox'</span>).each(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">//alert(<span class="string">' 当 '</span>);</div><div class="line">//this -&gt;  走到谁哪里， this 就是谁 此时的 this 是 DOM 对象</div><div class="line">//console.log(this);</div><div class="line"><span class="keyword">if</span>($(this).prop(<span class="string">'checked'</span>))&#123;</div><div class="line">$(this).prop(<span class="string">'checked'</span>,<span class="literal">false</span>);</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">$(this).prop(<span class="string">'checked'</span>,<span class="literal">true</span>);</div><div class="line">&#125;</div><div class="line">&#125;);</div><div class="line">&#125;*/</div><div class="line">// 更简化的方式，直接对自己取反</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">fan</span></span>() &#123;</div><div class="line">$(<span class="string">'input:checkbox'</span>).each(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">this.checked = !this.checked;</div><div class="line">&#125;);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="jQuery-处理事件的特点"><a href="#jQuery-处理事件的特点" class="headerlink" title="jQuery 处理事件的特点"></a>jQuery 处理事件的特点</h3><p>1: 和原生事件的语法区别<br>原生绑定 : xxDOMNode.onclick=function(){} , xx.onmousever = function();<br>原生触发 : xxDOMNode.click(), xx.submit(); xx.focus();<br>jQuery 绑定 : $(selector).click(function(){});<br>jQuery 触发 : $(selector).click();<br>2: 和 xx.onclick 等的绑定次数的区别<br>xx.onclick = function(){}, 是给 onclick 属性赋值 , 赋多个值 , 前面的被覆盖 , 只有最后一个函数被调用<br>$(selector).click( 函数 1);<br>$(selector).click( 函数 2);<br>$(selector).click( 函数 3); –&gt;  会按绑定的顺序 , 逐个执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">....</div><div class="line">&lt;body&gt;</div><div class="line">&lt;h1&gt;jquery 事件与原生事件的比较 &lt;/h1&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"form111"</span> value=<span class="string">"email..."</span>&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"form222"</span> value=<span class="string">"email..."</span>&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> name=<span class="string">""</span> value=<span class="string">"test1"</span>&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> name=<span class="string">""</span> value=<span class="string">"test2"</span>&gt;&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script&gt;</div><div class="line">//  原生 JS 绑定事件与触发事件的区别</div><div class="line">var inps = document.getElementsByTagName(<span class="string">'input'</span>);</div><div class="line">//1. 鼠标过来 , 用的是 onmouseover</div><div class="line">inps[0].onmouseover = <span class="function"><span class="title">function</span></span> () &#123; // 原生绑定</div><div class="line">this.value = <span class="string">''</span>; //2. 内容设置为空</div><div class="line">this.focus(); //  原生触发 //3. 设置焦点</div><div class="line">&#125;</div><div class="line">// jQuery 绑定事件与触发事件</div><div class="line">$(<span class="string">'input[name=form222]'</span>).mouseover(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">$(this).val(); // jq 封装 val(<span class="string">''</span>) ，传参则设置对象的 value, 不传参则获取对象的 value</div><div class="line">$(this).focus();</div><div class="line">&#125;);</div><div class="line">//  绑定次数上的区别</div><div class="line">var inps = document.getElementsByTagName(<span class="string">'input'</span>);</div><div class="line">// 原生绑定</div><div class="line">inps[2].onclick = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">alert(<span class="string">' 你 '</span>);</div><div class="line">&#125;</div><div class="line">inps[2].onclick = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">alert(<span class="string">' 是 '</span>);</div><div class="line">&#125;</div><div class="line">inps[2].onclick = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">alert(<span class="string">' 谁 '</span>);</div><div class="line">&#125;</div><div class="line">//jq 绑定</div><div class="line">$(inps[3]).click(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">alert(<span class="string">' 你 '</span>);</div><div class="line">&#125;);</div><div class="line">$(inps[3]).click(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">alert(<span class="string">' 是 '</span>);</div><div class="line">&#125;);</div><div class="line">$(inps[3]).click(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">alert(<span class="string">' 谁 '</span>);</div><div class="line">&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="ajax-之-GET-请求"><a href="#ajax-之-GET-请求" class="headerlink" title="ajax 之 GET 请求"></a>ajax 之 GET 请求</h3><p>ajax 验证用户名<br>想一下 js 中的 ajax 需要几步<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$un</span> = <span class="variable">$_GET</span>[<span class="string">'un'</span>];</div><div class="line"><span class="built_in">echo</span> in_array(<span class="variable">$un</span>,array(<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'laoliu'</span>))?1:0;</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">用户名 : &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;&lt;span id=<span class="string">"reg"</span>&gt;&lt;/span&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">'input:text'</span>).blur(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">var url = <span class="string">'x.php?u='</span> + this.value;</div><div class="line">$.get(url , <span class="keyword">function</span>(res)&#123;// 如果获取后台相应的值 ,jq 写了一个封装 ,  </div><div class="line">你只需要写一个回调函数 , 并且写一个参数 ,   </div><div class="line">会自动的把结果返回给你写的回调函数的第一个参数 .</div><div class="line"><span class="keyword">if</span>(res == <span class="string">'1'</span>) &#123;</div><div class="line">$(<span class="string">'#reg'</span>).html(<span class="string">'&lt;font color="red"&gt; 已被占用 &lt;/font&gt;'</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">$(<span class="string">'#reg'</span>).html(<span class="string">'&lt;font color="green"&gt; 可以使用 &lt;/font&gt;'</span>);</div><div class="line">&#125;</div><div class="line">&#125;);</div><div class="line">&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="Ajax-之-POST"><a href="#Ajax-之-POST" class="headerlink" title="Ajax 之 POST"></a>Ajax 之 POST</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">&lt;h1&gt;jquery  发送 POST ajax 查询 &lt;/h1&gt;</div><div class="line">&lt;form action=<span class="string">""</span>&gt;</div><div class="line">&lt;p&gt; 用户名 :&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"u"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt; 密码 :&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"p"</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;&lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">" 提交 "</span> /&gt;&lt;/p&gt;</div><div class="line">&lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script&gt;</div><div class="line">$(<span class="string">'form'</span>).submit(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">var data = &#123;</div><div class="line"><span class="string">'u'</span> : $(<span class="string">'input[name="u"]'</span>).val(),</div><div class="line"><span class="string">'p'</span> : $(<span class="string">'input[name="p"]'</span>).val()</div><div class="line">&#125;;</div><div class="line">$.post(<span class="string">'31.php'</span> , data , <span class="keyword">function</span>(res)&#123;</div><div class="line">alert(res);</div><div class="line">&#125;);</div><div class="line"><span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/04/06/makedown/" data-toggle="tooltip" data-placement="top" title="sublime实现markdown编写及预览">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/06/01/PHP资源列表教程/" data-toggle="tooltip" data-placement="top" title="PHP资源列表教程">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/05/04/jquery/"
+                        data-title="初级jQuery教程"
+                        data-url="http://yoursite.com/2016/05/04/jquery/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#jquery" title="jquery">jquery</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://mida.re/" target="_blank">乱序</a></li>
+                    
+                        <li><a href="http://qianduan.guru/" target="_blank">前端外刊评论</a></li>
+                    
+                        <li><a href="http://lingyu.wang/" target="_blank">天镶的博客</a></li>
+                    
+                        <li><a href="http://hmqk1995.github.io" target="_blank">Luke 的自留地</a></li>
+                    
+                        <li><a href="http://ebnbin.com/" target="_blank">Ebn&#39;s Blog</a></li>
+                    
+                        <li><a href="http://blog.smdcn.net" target="_blank">SmdCn&#39;s Blog</a></li>
+                    
+                        <li><a href="http://xieminis.me/" target="_blank">解旻的博客</a></li>
+                    
+                        <li><a href="http://dhong.co" target="_blank">DHong Say</a></li>
+                    
+                        <li><a href="http://ingf.github.io/" target="_blank">尹峰以为</a></li>
+                    
+                        <li><a href="http://wepiaofei.github.io/blog/" target="_blank">前端神盾局</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'XURblog';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/XURpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/XURpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/XURpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/XURpro">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; XUR Blog 2017
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'undefined';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
