@@ -13,11 +13,11 @@
 
     <title>
         
-          sublime实现markdown编写及预览 - XUR的博客 | XUR Blog
+          laravel之邮件发送 - XUR的博客 | XUR Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2016/04/06/makedown/">
+    <link rel="canonical" href="http://yoursite.com/2016/12/03/laravel之邮件发送/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,14 +148,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
+                          <a class="tag" href="/tags/#laravel" title="laravel">laravel</a>
                         
                     </div>
-                    <h1>sublime实现markdown编写及预览</h1>
+                    <h1>laravel之邮件发送</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by XUR on
-                        2016-04-06
+                        2016-12-03
                     </span>
                 </div>
             </div>
@@ -174,14 +174,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="sublime实现markdown编写及预览"><a href="#sublime实现markdown编写及预览" class="headerlink" title="sublime实现markdown编写及预览"></a>sublime实现markdown编写及预览</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">个人使用sublime编写markdown的频率比较高，为了编写和预览，就整理了以下的方法。</div></pre></td></tr></table></figure>
-<h3 id="安装Sublime-Text"><a href="#安装Sublime-Text" class="headerlink" title="安装Sublime Text"></a>安装Sublime Text</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">无论是Sublime2还是Sublime3，都是支持markdown标记语言的，所以我们不必为选择那个版本而纠结。</div></pre></td></tr></table></figure>
-<h3 id="安装需要的包"><a href="#安装需要的包" class="headerlink" title="安装需要的包"></a>安装需要的包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">为了达成我们的目标，我们通常来说会安装下面的一些package。</div><div class="line">    package control install</div><div class="line">    markdown editing</div><div class="line">    markdown preview</div><div class="line">具体步骤：</div><div class="line">    按住 Ctrl + Shift + P调出一个弹出的输入框</div><div class="line">    输入package control install，等待左下角的缓存结束</div><div class="line">    在输入框分别输入 markdown editing 和 markdown preview</div><div class="line">    我们就完成我们需要的包的安装了，接下来重启Sublime之后即可使用。</div></pre></td></tr></table></figure>
-<h3 id="MarkdownPreview介绍"><a href="#MarkdownPreview介绍" class="headerlink" title="MarkdownPreview介绍"></a>MarkdownPreview介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在文件最前面添加[TOC]会自动生成目录</div><div class="line">按Ctrl + B会自动生成网页html；</div></pre></td></tr></table></figure>
-<h3 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">理论上到这里就该结束了，但是上面的步骤比较繁琐，每次修改文档后都需要Ctrl + B生成html文件，然后再在浏览器上刷新显示。接下来我们做个自定义的配置。</div><div class="line"></div><div class="line">选择菜单preference–&gt; key bunding user(首选项–&gt; 按键绑定-用户)</div><div class="line">输入：</div><div class="line">    [</div><div class="line">        &#123;<span class="string">"keys"</span>: [<span class="string">"alt+m"</span>], <span class="string">"command"</span>: <span class="string">"markdown_preview"</span>, <span class="string">"args"</span>: &#123; <span class="string">"target"</span>: <span class="string">"browser"</span>&#125;&#125;</div><div class="line">    ]</div></pre></td></tr></table></figure>
-<h3 id="OmniMarkupPreviwer"><a href="#OmniMarkupPreviwer" class="headerlink" title="OmniMarkupPreviwer"></a>OmniMarkupPreviwer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">实时在浏览器中预览，而MarkdownPreview是需要手动生成的和手动刷新的。</div><div class="line">如果双屏的话，应该具有不错的体验。</div></pre></td></tr></table></figure>
-<h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">按住 Ctrl + Shift + P调出一个弹出的输入框</div><div class="line">输入package control install,等待左下角的缓存结束</div><div class="line">在输入框输入 OmniMarkupPreviwer，安装</div></pre></td></tr></table></figure>
-<h4 id="2-快捷键"><a href="#2-快捷键" class="headerlink" title="2 快捷键"></a>2 快捷键</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Ctrl + Alt + O: Preview Markup <span class="keyword">in</span> Browser</div><div class="line">Ctrl + Alt + X: Export Markup as HTML</div><div class="line">Ctrl + Alt + C: Copy Markup as HTML</div></pre></td></tr></table></figure>
+                <p>laravel自带SwiftMailer库，集成了多种邮件API，可以很方便的实现邮件的发送。<br>在本教程中使用到的是SMTP（Simple Message Transfer Protocol）简单邮件传输协议，通常理解为邮件发送服务器。<br>实验中使用163邮箱。</p>
+<h5 id="编辑邮件配置文件："><a href="#编辑邮件配置文件：" class="headerlink" title="编辑邮件配置文件："></a>编辑邮件配置文件：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">修改laravel/config/mail.php</div></pre></td></tr></table></figure>
+<h5 id="编辑mail-php"><a href="#编辑mail-php" class="headerlink" title="编辑mail.php"></a>编辑mail.php</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">return</span> [</div><div class="line">‘driver’ =&gt; env(‘MAIL_DRIVER’, ‘smtp’),</div><div class="line">‘host’ =&gt; env(‘MAIL_HOST’, ‘smtp.163.com’),</div><div class="line">‘port’ =&gt; env(‘MAIL_PORT’, 25),</div><div class="line">‘from’ =&gt; [‘address’ =&gt; ‘shiqi_dai@163.com’,’name’ =&gt; ‘发件人’],</div><div class="line">‘encryption’ =&gt; env(‘MAIL_ENCRYPTION’, ‘tls’),</div><div class="line">‘username’ =&gt; env(‘MAIL_USERNAME’),</div><div class="line">‘password’ =&gt; env(‘MAIL_PASSWORD’),</div><div class="line">‘sendmail’ =&gt; ‘/usr/sbin/sendmail -bs’,</div><div class="line">]</div></pre></td></tr></table></figure>
+<h5 id="编辑环境配置文件"><a href="#编辑环境配置文件" class="headerlink" title="编辑环境配置文件"></a>编辑环境配置文件</h5><p>vim laravel/.env<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.env</div><div class="line">MAIL_DRIVER=</div><div class="line">MAIL_HOST=</div><div class="line">MAIL_PORT=</div><div class="line">MAIL_USERNAME=yourname@163.com</div><div class="line">MAIL_PASSWORD=password</div><div class="line">MAIL_ENCRYPTION=</div></pre></td></tr></table></figure></p>
+<h5 id="env文件需要配置username和password其余为空，则会使用mail-php的配置。"><a href="#env文件需要配置username和password其余为空，则会使用mail-php的配置。" class="headerlink" title=".env文件需要配置username和password其余为空，则会使用mail.php的配置。"></a>.env文件需要配置username和password其余为空，则会使用mail.php的配置。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1.driver用于配置默认的邮件发送驱动，Laravel支持多种邮件驱动方式，包括smtp、Mailgun、Maildrill、</div><div class="line">Amazon SES、mail和sendmail，Mailgun和Amazon SES都是收费的Maildrill目前不支持中国区用户，这三个</div><div class="line">都是第三方邮件服务。mail驱动使用PHP提供的mail函数发送，sendmail驱动通过Sendmail/Postfix（Linux）</div><div class="line">提供的命令发送邮件，smtp驱动通过支持ESMTP的SMTP发送邮件。</div><div class="line">就目前状况来看，使用smtp是最明智的选择，mail不安全，sendmail需要安装配置Sendmail/Postfix，其他要</div><div class="line">么付费要么不能用。</div><div class="line"></div><div class="line">2.host是邮箱所在主机，比如我们使用163邮箱，对应值是smtp.163.com，使用QQ邮箱的话，对应值是smtp.qq.com。</div><div class="line"></div><div class="line">3.port用于配置邮箱发送服务端口号，比如一般默认值是25，但如果设置SMTP使用SSL加密，该值为465。</div><div class="line">from配置项包含address和name，前者表示发送邮箱，后者表示发送邮件使用的用户名。</div><div class="line"></div><div class="line">4.encryption表示加密类型，可以设置为null表示不使用任何加密，也可以设置为tls或ssl。</div><div class="line">username表示邮箱账号，比如yaojinbu@163.com</div><div class="line"></div><div class="line">5.password表示上述邮箱登录对应登录密码。注意QQ邮箱的话应该开启POP3|SMTP服务时给的密钥。</div><div class="line">sendmail是在设置driver为sendmail时使用，用于指定sendmail命令路径。</div></pre></td></tr></table></figure>
+<h5 id="开始编写控制器、路由、模板。"><a href="#开始编写控制器、路由、模板。" class="headerlink" title="开始编写控制器、路由、模板。"></a>开始编写控制器、路由、模板。</h5><p>在路由中加入如下规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::get(‘mail/send’,’MailController@send’);</div></pre></td></tr></table></figure></p>
+<h5 id="生成控制器"><a href="#生成控制器" class="headerlink" title="生成控制器"></a>生成控制器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make::controller MailController</div></pre></td></tr></table></figure>
+<p>在laravel/app/Http/Controllers生成了一个MailController控制器，如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/MailController.php</div><div class="line">&lt;?php</div><div class="line">namespace App\Http\Controllers;</div><div class="line">use Illuminate\Http\Request;</div><div class="line">use App\Http\Requests;</div><div class="line">use App\Http\Controllers\Controller;</div><div class="line">class MailController extends Controller</div><div class="line">&#123;</div><div class="line">//</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="编辑控制器，加入以下的逻辑处理"><a href="#编辑控制器，加入以下的逻辑处理" class="headerlink" title="编辑控制器，加入以下的逻辑处理"></a>编辑控制器，加入以下的逻辑处理</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">use Mail;</div><div class="line">class MailController&#123;</div><div class="line">public <span class="keyword">function</span> <span class="function"><span class="title">send</span></span>()</div><div class="line">&#123;</div><div class="line"><span class="variable">$name</span> = ‘daisy’;</div><div class="line"><span class="variable">$flag</span> = Mail::send(‘emails.test’,[‘name’=&gt;<span class="variable">$name</span>],<span class="keyword">function</span>(<span class="variable">$message</span>)&#123;</div><div class="line"><span class="variable">$to</span> = ‘88888888@qq.com’;</div><div class="line"><span class="variable">$message</span> -&gt;to(<span class="variable">$to</span>)-&gt;subject(‘邮件测试’);</div><div class="line">&#125;);</div><div class="line"><span class="keyword">if</span>(<span class="variable">$flag</span>)&#123;</div><div class="line"><span class="built_in">echo</span> ‘发送邮件成功，请查收！’;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line"><span class="built_in">echo</span> ‘发送邮件失败，请重试！’;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Mail::send();需要传三个参数，第一个为引用的模板，第二个为给模板传递的变量，第三个为一个闭包，参数绑定Mail类的一个实例。<br>在resources/emails下创建一个模板文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test.blade.php</div><div class="line">你好，这是一封测试文件。</div></pre></td></tr></table></figure></p>
+<p>好，现在在服务器上进行测试了，在地址栏输入**.com/mail/send，发送成功。</p>
 
 
                 <hr>
@@ -191,13 +194,9 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/03/02/hello/" data-toggle="tooltip" data-placement="top" title="hello world">&larr; Previous Post</a>
+                            <a href="/2016/06/01/PHP资源列表教程/" data-toggle="tooltip" data-placement="top" title="PHP资源列表教程">&larr; Previous Post</a>
                         </li>
                     
-                    
-                        <li class="next">
-                            <a href="/2016/05/04/jquery/" data-toggle="tooltip" data-placement="top" title="初级jQuery教程">Next Post &rarr;</a>
-                        </li>
                     
                 </ul>
 
@@ -205,9 +204,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/04/06/makedown/"
-                        data-title="sublime实现markdown编写及预览"
-                        data-url="http://yoursite.com/2016/04/06/makedown/" >
+                        data-thread-key="2016/12/03/laravel之邮件发送/"
+                        data-title="laravel之邮件发送"
+                        data-url="http://yoursite.com/2016/12/03/laravel之邮件发送/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -233,7 +232,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
+                          <a class="tag" href="/tags/#laravel" title="laravel">laravel</a>
                         
                     </div>
                 </section>
