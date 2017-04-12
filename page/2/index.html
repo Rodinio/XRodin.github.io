@@ -13,11 +13,11 @@
 
     <title>
         
-          优化索引 - XUR的博客 | XUR Blog
+          XUR的博客 | XUR Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2017/03/14/优化索引/">
+    <link rel="canonical" href="http://yoursite.com/page/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -123,160 +123,257 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/home-bg.jpg')
-    }
-</style>
-<header class="intro-header" >
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#mysql" title="mysql">mysql</a>
-                        
-                    </div>
-                    <h1>优化索引</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by XUR on
-                        2017-03-14
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>XUR Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">一生想做浪漫极客</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
 
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
 
-                <h3 id="表的优化和列类型的索引"><a href="#表的优化和列类型的索引" class="headerlink" title="表的优化和列类型的索引"></a>表的优化和列类型的索引</h3><ul>
-<li><p>表的优化</p>
-<p>1.定长与变长分离</p>
-<p>2.常用字段与不常用字段分离,将查询频率的字段单拆出来.<br>3.在需要关联统计的字段上,添加冗余字段</p>
-</li>
-<li><p>列选择原则:</p>
-<p>整型&gt;date,time&gt;enum&gt;varchar&gt;blob&gt;text</p>
-</li>
+
+<div class="post-preview">
+
+    <a href="/2016/05/20/PHP知识点/">
+        <h2 class="post-title">
+            PHP知识点
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            PHP知识点Php：脚本语言，网站建设，服务器端运行
+PHP定义：一种服务器端的HTML脚本/编程语言,是一种简单的、面向对象的、解释型的、健壮的、安全的、性能非常之高的、独立于架构的、可移植的、动态的脚本语言。是一种广泛用于Open Source（开放源代码）的尤其适合Web开发并可以嵌入HTML的多用途脚本语言。它的语法接近C，Java和Perl，而且容易学习。该语言让Web开发人员快速......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2016-05-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/05/20/laravel的Request对象文件上传/">
+        <h2 class="post-title">
+            laravel的Request对象文件上传和helper函数
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            之前看见文件上传就头疼，自从用laravel之后再也不疼了~~  哈哈今天就看下炒鸡简单的request对象的文件上传
+关于request我们从http角度看..
+
+
+那么在laravel中如何声明一个request对象呢？
+1.第一种方法
+public function test(Request $requset){
+  //打印出来看一下都有什么信息?
+  //几乎包含你请求的所有信息
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2016-05-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/05/04/jquery/">
+        <h2 class="post-title">
+            初级jQuery教程
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            jQuery 是什么 ?是封装了常用 JS 操作函数的一个库文件.有没有其他开源库？
+Prototype.js  历史比较早 , 是 SamStephenson 写的一个非常优雅的 javascript 基础类库，对 javascript 做了大量的扩展，而且很好的支持 Ajax  ，国内外有多个基于此类库开发的子项目 .
+Ext.js ExtJS 是一种主要用于创建前端用户界面，是一个基本......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2016-05-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/04/06/makedown/">
+        <h2 class="post-title">
+            sublime实现markdown编写及预览
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            sublime实现markdown编写及预览写在前面1个人使用sublime编写markdown的频率比较高，为了编写和预览，就整理了以下的方法。
+安装Sublime Text1无论是Sublime2还是Sublime3，都是支持markdown标记语言的，所以我们不必为选择那个版本而纠结。
+安装需要的包123456789为了达成我们的目标，我们通常来说会安装下面的一些package。   ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2016-04-06
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/03/02/hello/">
+        <h2 class="post-title">
+            hello world
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            hello worldHello World ，中文意思：你好，世界。世界上的第一个程序就是Hello World，由Brian Kernighan创作。“Hello, world”程序是指在计算机屏幕上输出“Hello,world”这行字符串的计算机程序，“hello, world”的中文意思是“世界，你好”。这个例程在Brian Kernighan 和Dennis M. Ritchie合......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2016-03-02
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/">&larr; Newer Posts</a>
+        </li>
+    
+    
 </ul>
-<h3 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h3><p>索引定义：在mysql中也叫key,是储存引擎用于为了快速找到记录的一种数据结构.</p>
-<ul>
-<li>索引对于良好的性能很关键,当表中的数据越来越大的时候,索引对性能的影响越显得尤为重要.</li>
-</ul>
-<h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h3><p>如果人们在谈论索引,如果没有特殊指定类型,那么大多数说的就是B-Tree索引.他使用的是B-Tree数据结构类存储数据,大多数的mysql引擎都支持b-tree.</p>
-<p>B-Tree意味着所有的值都是按照一定顺序排列的,并且每个叶子到根的距离都是相同的.</p>
-<p>如图介绍了b-tree查询有多快:</p>
-<h3 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h3><p>理论上哈希索引一次就可以找到值,既然哈希这么高效,为什么不都用哈希呢?</p>
-<ul>
-<li>答:</li>
-</ul>
-<p>1.地址会重复,导致需要一些方法去解决,譬如拉链算法.<br>2.无序的,会产生很多空洞</p>
-<p>3.无法进行范围查询(譬如: id&lt; 4 ).而b-tree范围查询非常6 .</p>
-<p>4.无法利用前缀索引.譬如helloworld和hello,你无法根据hello查出helloworld,根据哈希的原理hello和helloworld算出来的地址是没有任何关系的.</p>
-<p>5.排序也没有办法优化,order by 等都没有办法进行运算</p>
-<h3 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h3><ul>
-<li>索引:index(a,b,c,d)(==索引的顺序很重要==)</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>语句</th>
-<th>是否发挥作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>where a=2</td>
-<td>是.只是用a索引</td>
-</tr>
-<tr>
-<td>where =3 and b=4</td>
-<td>是,使用a,b索引</td>
-</tr>
-<tr>
-<td>where a=3 and b=4 and c=5</td>
-<td>是,使用a,b.c三个索引</td>
-</tr>
-<tr>
-<td>where a=1/b =3</td>
-<td>否</td>
-</tr>
-<tr>
-<td>where a=3 and c=4</td>
-<td>列a使用索引,c不发挥作用</td>
-</tr>
-<tr>
-<td>where a=2 and b&gt;10 and c=3</td>
-<td>a使用 b发挥作用,c不使用索引</td>
-</tr>
-<tr>
-<td>where a=3 and b like’%hh’and c =3</td>
-<td>a能发挥,b,c不能</td>
-</tr>
-</tbody>
-</table>
-<p>==上述体现了B-Tree的左前缀原则==</p>
-<p>然而优化不是你凭空说的,根据自己网站的实际情况,具体调研而定.</p>
 
 
-                <hr>
 
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2017/01/01/redis/" data-toggle="tooltip" data-placement="top" title="redis 数据类型">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                </ul>
-
-                
-                <!-- 多说评论框 start -->
-                <div class="comment">
-                    <div class="ds-thread"
-                        data-thread-key="2017/03/14/优化索引/"
-                        data-title="优化索引"
-                        data-url="http://yoursite.com/2017/03/14/优化索引/" >
-                    </div>
-                </div>
-                <!-- 多说评论框 end -->
-                
-
+                <!-- 如果开启评论功能 -->
                 
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
     <!-- Sidebar Container -->
-
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
                 <!-- Featured Tags -->
                 
 
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar-xu.jpg" />
+                        
+
+                        
+                            <p>你能做到的，比想像的更多。</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+                                <li>
+                                    <a target="_blank" href="https://www.zhihu.com/people/XURpro">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                                <li>
+                                    <a target="_blank" href="http://weibo.com/XURpro">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                                <li>
+                                    <a target="_blank" href="https://www.facebook.com/XURpro">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/XURpro">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -303,69 +400,9 @@
                 </ul>
                 
             </div>
-
-        </div>
+        
     </div>
-</article>
-
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    // dynamic User by Hux
-    var _user = 'XURblog';
-
-    // duoshuo comment query.
-    var duoshuoQuery = {short_name: _user };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
-
-
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+</div>
 
 
     <!-- Footer -->
