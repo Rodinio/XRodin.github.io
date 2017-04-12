@@ -13,11 +13,11 @@
 
     <title>
         
-          laravel之邮件发送 - XUR的博客 | XUR Blog
+          laravel的Request对象文件上传和helper函数 - XUR的博客 | XUR Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2016/12/03/laravel之邮件发送/">
+    <link rel="canonical" href="http://yoursite.com/2016/05/20/laravel的Request对象文件上传/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -138,7 +138,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('img/home-bg.jpg')
+        background-image: url('/img/home-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -148,14 +148,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#laravel" title="laravel">laravel</a>
+                          <a class="tag" href="/tags/#lararvel Request对象 laravel辅助函数" title="lararvel Request对象 laravel辅助函数">lararvel Request对象 laravel辅助函数</a>
                         
                     </div>
-                    <h1>laravel之邮件发送</h1>
+                    <h1>laravel的Request对象文件上传和helper函数</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by XUR on
-                        2016-12-03
+                        2016-05-20
                     </span>
                 </div>
             </div>
@@ -174,17 +174,128 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>laravel自带SwiftMailer库，集成了多种邮件API，可以很方便的实现邮件的发送。<br>在本教程中使用到的是SMTP（Simple Message Transfer Protocol）简单邮件传输协议，通常理解为邮件发送服务器。<br>实验中使用163邮箱。</p>
-<h5 id="编辑邮件配置文件："><a href="#编辑邮件配置文件：" class="headerlink" title="编辑邮件配置文件："></a>编辑邮件配置文件：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">修改laravel/config/mail.php</div></pre></td></tr></table></figure>
-<h5 id="编辑mail-php"><a href="#编辑mail-php" class="headerlink" title="编辑mail.php"></a>编辑mail.php</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">return</span> [</div><div class="line">‘driver’ =&gt; env(‘MAIL_DRIVER’, ‘smtp’),</div><div class="line">‘host’ =&gt; env(‘MAIL_HOST’, ‘smtp.163.com’),</div><div class="line">‘port’ =&gt; env(‘MAIL_PORT’, 25),</div><div class="line">‘from’ =&gt; [‘address’ =&gt; ‘shiqi_dai@163.com’,’name’ =&gt; ‘发件人’],</div><div class="line">‘encryption’ =&gt; env(‘MAIL_ENCRYPTION’, ‘tls’),</div><div class="line">‘username’ =&gt; env(‘MAIL_USERNAME’),</div><div class="line">‘password’ =&gt; env(‘MAIL_PASSWORD’),</div><div class="line">‘sendmail’ =&gt; ‘/usr/sbin/sendmail -bs’,</div><div class="line">]</div></pre></td></tr></table></figure>
-<h5 id="编辑环境配置文件"><a href="#编辑环境配置文件" class="headerlink" title="编辑环境配置文件"></a>编辑环境配置文件</h5><p>vim laravel/.env<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.env</div><div class="line">MAIL_DRIVER=</div><div class="line">MAIL_HOST=</div><div class="line">MAIL_PORT=</div><div class="line">MAIL_USERNAME=yourname@163.com</div><div class="line">MAIL_PASSWORD=password</div><div class="line">MAIL_ENCRYPTION=</div></pre></td></tr></table></figure></p>
-<h5 id="env文件需要配置username和password其余为空，则会使用mail-php的配置。"><a href="#env文件需要配置username和password其余为空，则会使用mail-php的配置。" class="headerlink" title=".env文件需要配置username和password其余为空，则会使用mail.php的配置。"></a>.env文件需要配置username和password其余为空，则会使用mail.php的配置。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1.driver用于配置默认的邮件发送驱动，Laravel支持多种邮件驱动方式，包括smtp、Mailgun、Maildrill、</div><div class="line">Amazon SES、mail和sendmail，Mailgun和Amazon SES都是收费的Maildrill目前不支持中国区用户，这三个</div><div class="line">都是第三方邮件服务。mail驱动使用PHP提供的mail函数发送，sendmail驱动通过Sendmail/Postfix（Linux）</div><div class="line">提供的命令发送邮件，smtp驱动通过支持ESMTP的SMTP发送邮件。</div><div class="line">就目前状况来看，使用smtp是最明智的选择，mail不安全，sendmail需要安装配置Sendmail/Postfix，其他要</div><div class="line">么付费要么不能用。</div><div class="line"></div><div class="line">2.host是邮箱所在主机，比如我们使用163邮箱，对应值是smtp.163.com，使用QQ邮箱的话，对应值是smtp.qq.com。</div><div class="line"></div><div class="line">3.port用于配置邮箱发送服务端口号，比如一般默认值是25，但如果设置SMTP使用SSL加密，该值为465。</div><div class="line">from配置项包含address和name，前者表示发送邮箱，后者表示发送邮件使用的用户名。</div><div class="line"></div><div class="line">4.encryption表示加密类型，可以设置为null表示不使用任何加密，也可以设置为tls或ssl。</div><div class="line">username表示邮箱账号，比如yaojinbu@163.com</div><div class="line"></div><div class="line">5.password表示上述邮箱登录对应登录密码。注意QQ邮箱的话应该开启POP3|SMTP服务时给的密钥。</div><div class="line">sendmail是在设置driver为sendmail时使用，用于指定sendmail命令路径。</div></pre></td></tr></table></figure>
-<h5 id="开始编写控制器、路由、模板。"><a href="#开始编写控制器、路由、模板。" class="headerlink" title="开始编写控制器、路由、模板。"></a>开始编写控制器、路由、模板。</h5><p>在路由中加入如下规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::get(‘mail/send’,’MailController@send’);</div></pre></td></tr></table></figure></p>
-<h5 id="生成控制器"><a href="#生成控制器" class="headerlink" title="生成控制器"></a>生成控制器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make::controller MailController</div></pre></td></tr></table></figure>
-<p>在laravel/app/Http/Controllers生成了一个MailController控制器，如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/MailController.php</div><div class="line">&lt;?php</div><div class="line">namespace App\Http\Controllers;</div><div class="line">use Illuminate\Http\Request;</div><div class="line">use App\Http\Requests;</div><div class="line">use App\Http\Controllers\Controller;</div><div class="line">class MailController extends Controller</div><div class="line">&#123;</div><div class="line">//</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h5 id="编辑控制器，加入以下的逻辑处理"><a href="#编辑控制器，加入以下的逻辑处理" class="headerlink" title="编辑控制器，加入以下的逻辑处理"></a>编辑控制器，加入以下的逻辑处理</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">use Mail;</div><div class="line">class MailController&#123;</div><div class="line">public <span class="keyword">function</span> <span class="function"><span class="title">send</span></span>()</div><div class="line">&#123;</div><div class="line"><span class="variable">$name</span> = ‘daisy’;</div><div class="line"><span class="variable">$flag</span> = Mail::send(‘emails.test’,[‘name’=&gt;<span class="variable">$name</span>],<span class="keyword">function</span>(<span class="variable">$message</span>)&#123;</div><div class="line"><span class="variable">$to</span> = ‘88888888@qq.com’;</div><div class="line"><span class="variable">$message</span> -&gt;to(<span class="variable">$to</span>)-&gt;subject(‘邮件测试’);</div><div class="line">&#125;);</div><div class="line"><span class="keyword">if</span>(<span class="variable">$flag</span>)&#123;</div><div class="line"><span class="built_in">echo</span> ‘发送邮件成功，请查收！’;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line"><span class="built_in">echo</span> ‘发送邮件失败，请重试！’;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Mail::send();需要传三个参数，第一个为引用的模板，第二个为给模板传递的变量，第三个为一个闭包，参数绑定Mail类的一个实例。<br>在resources/emails下创建一个模板文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test.blade.php</div><div class="line">你好，这是一封测试文件。</div></pre></td></tr></table></figure></p>
-<p>好，现在在服务器上进行测试了，在地址栏输入**.com/mail/send，发送成功。</p>
+                <h5 id="之前看见文件上传就头疼，自从用laravel之后再也不疼了-哈哈今天就看下炒鸡简单的request对象的文件上传"><a href="#之前看见文件上传就头疼，自从用laravel之后再也不疼了-哈哈今天就看下炒鸡简单的request对象的文件上传" class="headerlink" title="之前看见文件上传就头疼，自从用laravel之后再也不疼了~~  哈哈今天就看下炒鸡简单的request对象的文件上传"></a>之前看见文件上传就头疼，自从用laravel之后再也不疼了~~  哈哈今天就看下炒鸡简单的request对象的文件上传</h5><blockquote>
+<p>关于request我们从http角度看..</p>
+</blockquote>
+<p><img src="http://i1.piimg.com/4851/9fb932769757be5b.png" alt="https"></p>
+<h4 id="那么在laravel中如何声明一个request对象呢？"><a href="#那么在laravel中如何声明一个request对象呢？" class="headerlink" title="那么在laravel中如何声明一个request对象呢？"></a>那么在laravel中如何声明一个request对象呢？</h4><pre>
+1.第一种方法
+public function test(Request $requset){
+  //打印出来看一下都有什么信息?
+  //几乎包含你请求的所有信息
+  dd($request);
+}
+-----------------
+2.第二种方法
+public function (){
+  $request = request;
+  dd($request);
+}
+</pre>
+
+<p>接下来我们写一个简单的文件上传的例子吧..</p>
+<p>（这个写法是以blade.php结尾的文件）</p>
+<pre><code>&lt;p&gt;文件上传&lt;/p&gt;
+&lt;form action=&quot;&quot; method=&apos;post&apos; enctype=&apos;multipart/form-data&apos;&gt;&lt;/form&gt;
+{!!csrf_field()!!}
+&lt;p&gt;&lt;input type=&quot;file&quot; name=&apos;pic&apos;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/p&gt;
+</code></pre><p>  在对应的在方法中：</p>
+<pre>
+
+  public function upload(Request $req){
+    //文件路径
+    $path = '/imgs/';
+    //文件名称
+    $fileName = str_random(5).jpg;
+    //开始上传
+    //这个file里面的参数是blade模板中name的值。
+    $req->file('pic')->move($path,$fileName);
+
+  }
+
+</pre>
+
+
+<p>感受到了request对象的强大了吗？</p>
+<h3 id="helper函数"><a href="#helper函数" class="headerlink" title="helper函数"></a>helper函数</h3><p>  laravel提供了很多helper函数，一些caodan的问题，也许只要一个简单的函数就解决了~~ 那么我们拉总结下常用的函数吧。</p>
+ <li>数组函数</li>
+
+<li>字符串函数</li>
+
+<li>路径函数</li>
+
+<li>url函数</li>
+
+<li>其他</li>
+
+<p>这里是laravel的<a>helper函数</a></p>
+<pre>
+# 数组函数
+
+# array_collapse();
+
+//一个二维数组，将二维数组中的每个值取出来放在一个数组中
+$a = [[1,2,3],[4,5,6],[6,7,7]];
+$rs = array_collapse($a);
+输出：一个一维数组
+
+# str_limit  效果：[我是新闻...]
+str_limit('哈哈哈今天真开心'，8);  
+//第二个参数是多少个英文字符长度，其中中文占2个英文字节的长度。
+
+# str_random();//生成随机字符串
+
+print_r（str_random(6));
+生成6位字母数组随机的字符串，这是个生成图片的好函数 哈哈~
+
+
+</pre>
+
+<p> e()函数： 实体转义</p>
+<h3 id="路径函数："><a href="#路径函数：" class="headerlink" title="路径函数："></a>路径函数：</h3> <pre>
+//返回项目app的路径
+ app_path();
+
+ //返回项目的路径
+ base_path();
+ //返回项目的public的目录路径
+ public_path();
+ //返回项目配置文件所在的路径
+ config_path();
+ </pre>
+
+<h2 id="url函数"><a href="#url函数" class="headerlink" title="url函数"></a>url函数</h2><pre>
+1.url();
+url('msg/show',[3]);
+url('',["msg","show","3"]);
+url('msg/show',[3,"id"]);
+
+2.action();配合路由器生成规范的url;
+action('MsgController@del',[3]);
+
+3.back()；返回上一页
+有的时候back()可以替换redirect('/');
+
+ </pre>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3> <pre>
+ 1. 加密密码：
+ bcrypt(123456);
+
+ 2.生成防跨域提交的随机字符串
+ csrf_token();
+
+ 3.生成方跨域提交的隐藏字段
+(!!csrf_field()!!);
+
+4.打印变量，并且终止执行，一般调制的时候使用；  
+dd();
+5.重定向
+redirect();
+6.request对象
+$req = request();
+</pre>
 
 
                 <hr>
@@ -194,12 +305,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/07/14/mysql相关/" data-toggle="tooltip" data-placement="top" title="mysql相关">&larr; Previous Post</a>
+                            <a href="/2016/05/04/jquery/" data-toggle="tooltip" data-placement="top" title="初级jQuery教程">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/01/01/redis/" data-toggle="tooltip" data-placement="top" title="redis 数据类型">Next Post &rarr;</a>
+                            <a href="/2016/05/20/PHP知识点/" data-toggle="tooltip" data-placement="top" title="PHP知识点">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -208,9 +319,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/12/03/laravel之邮件发送/"
-                        data-title="laravel之邮件发送"
-                        data-url="http://yoursite.com/2016/12/03/laravel之邮件发送/" >
+                        data-thread-key="2016/05/20/laravel的Request对象文件上传/"
+                        data-title="laravel的Request对象文件上传和helper函数"
+                        data-url="http://yoursite.com/2016/05/20/laravel的Request对象文件上传/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -236,7 +347,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#laravel" title="laravel">laravel</a>
+                          <a class="tag" href="/tags/#lararvel Request对象 laravel辅助函数" title="lararvel Request对象 laravel辅助函数">lararvel Request对象 laravel辅助函数</a>
                         
                     </div>
                 </section>

@@ -167,6 +167,64 @@
 
 <div class="post-preview">
 
+    <a href="/2017/03/14/优化索引/">
+        <h2 class="post-title">
+            优化索引
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            表的优化和列类型的索引
+表的优化
+1.定长与变长分离
+2.常用字段与不常用字段分离,将查询频率的字段单拆出来.3.在需要关联统计的字段上,添加冗余字段
+
+列选择原则:
+整型&gt;date,time&gt;enum&gt;varchar&gt;blob&gt;text
+
+
+索引的类型索引定义：在mysql中也叫key,是储存引擎用于为了快速找到记录的一种数据结构.
+
+索引对于良好的性能很关键......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2017-03-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/01/01/redis/">
+        <h2 class="post-title">
+            redis 数据类型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+简单说下memcache和redis的区别：1 、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，zset，hash等数据结构的存储。
+2 、Redis支持数据的备份，即master-slave模式的数据备份。
+3 、Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用。
+通常redis以下几种数据类型：
+string常用命令：......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2017-01-01
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2016/12/03/laravel之邮件发送/">
         <h2 class="post-title">
             laravel之邮件发送
@@ -183,6 +241,44 @@
     <p class="post-meta">
         Posted by XUR on
         2016-12-03
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/07/14/mysql相关/">
+        <h2 class="post-title">
+            mysql相关
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+启动MySQL
+
+net start mysql
+
+连接与断开服务器
+
+mysql -h 地址 -P 端口 -u 用户名 -p 密码
+
+/ 跳过权限验证登录MySQL /
+
+mysqld &gt;skip-grant-tables
+
+修改root密码
+
+密码加密函数password()
+update mysql.user set password=password(‘root’);
+SHO......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2016-07-14
     </p>
 
 </div>
@@ -225,6 +321,36 @@ Composer Installers：一个多框架Composer......
         <div class="post-content-preview">
             PHP知识点Php：脚本语言，网站建设，服务器端运行
 PHP定义：一种服务器端的HTML脚本/编程语言,是一种简单的、面向对象的、解释型的、健壮的、安全的、性能非常之高的、独立于架构的、可移植的、动态的脚本语言。是一种广泛用于Open Source（开放源代码）的尤其适合Web开发并可以嵌入HTML的多用途脚本语言。它的语法接近C，Java和Perl，而且容易学习。该语言让Web开发人员快速......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by XUR on
+        2016-05-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/05/20/laravel的Request对象文件上传/">
+        <h2 class="post-title">
+            laravel的Request对象文件上传和helper函数
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            之前看见文件上传就头疼，自从用laravel之后再也不疼了~~  哈哈今天就看下炒鸡简单的request对象的文件上传
+关于request我们从http角度看..
+
+
+那么在laravel中如何声明一个request对象呢？
+1.第一种方法
+public function test(Request $requset){
+  //打印出来看一下都有什么信息?
+  //几乎包含你请求的所有信息
+......
         </div>
     </a>
     <p class="post-meta">
@@ -331,6 +457,14 @@ Ext.js ExtJS 是一种主要用于创建前端用户界面，是一个基本....
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                         
                             
                         

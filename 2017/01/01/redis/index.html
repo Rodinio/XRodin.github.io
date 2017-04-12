@@ -13,11 +13,11 @@
 
     <title>
         
-          laravel之邮件发送 - XUR的博客 | XUR Blog
+          redis 数据类型 - XUR的博客 | XUR Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2016/12/03/laravel之邮件发送/">
+    <link rel="canonical" href="http://yoursite.com/2017/01/01/redis/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -138,7 +138,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('img/home-bg.jpg')
+        background-image: url('/img/home-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -148,14 +148,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#laravel" title="laravel">laravel</a>
+                          <a class="tag" href="/tags/#redis" title="redis">redis</a>
                         
                     </div>
-                    <h1>laravel之邮件发送</h1>
+                    <h1>redis 数据类型</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by XUR on
-                        2016-12-03
+                        2017-01-01
                     </span>
                 </div>
             </div>
@@ -174,17 +174,28 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>laravel自带SwiftMailer库，集成了多种邮件API，可以很方便的实现邮件的发送。<br>在本教程中使用到的是SMTP（Simple Message Transfer Protocol）简单邮件传输协议，通常理解为邮件发送服务器。<br>实验中使用163邮箱。</p>
-<h5 id="编辑邮件配置文件："><a href="#编辑邮件配置文件：" class="headerlink" title="编辑邮件配置文件："></a>编辑邮件配置文件：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">修改laravel/config/mail.php</div></pre></td></tr></table></figure>
-<h5 id="编辑mail-php"><a href="#编辑mail-php" class="headerlink" title="编辑mail.php"></a>编辑mail.php</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">return</span> [</div><div class="line">‘driver’ =&gt; env(‘MAIL_DRIVER’, ‘smtp’),</div><div class="line">‘host’ =&gt; env(‘MAIL_HOST’, ‘smtp.163.com’),</div><div class="line">‘port’ =&gt; env(‘MAIL_PORT’, 25),</div><div class="line">‘from’ =&gt; [‘address’ =&gt; ‘shiqi_dai@163.com’,’name’ =&gt; ‘发件人’],</div><div class="line">‘encryption’ =&gt; env(‘MAIL_ENCRYPTION’, ‘tls’),</div><div class="line">‘username’ =&gt; env(‘MAIL_USERNAME’),</div><div class="line">‘password’ =&gt; env(‘MAIL_PASSWORD’),</div><div class="line">‘sendmail’ =&gt; ‘/usr/sbin/sendmail -bs’,</div><div class="line">]</div></pre></td></tr></table></figure>
-<h5 id="编辑环境配置文件"><a href="#编辑环境配置文件" class="headerlink" title="编辑环境配置文件"></a>编辑环境配置文件</h5><p>vim laravel/.env<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.env</div><div class="line">MAIL_DRIVER=</div><div class="line">MAIL_HOST=</div><div class="line">MAIL_PORT=</div><div class="line">MAIL_USERNAME=yourname@163.com</div><div class="line">MAIL_PASSWORD=password</div><div class="line">MAIL_ENCRYPTION=</div></pre></td></tr></table></figure></p>
-<h5 id="env文件需要配置username和password其余为空，则会使用mail-php的配置。"><a href="#env文件需要配置username和password其余为空，则会使用mail-php的配置。" class="headerlink" title=".env文件需要配置username和password其余为空，则会使用mail.php的配置。"></a>.env文件需要配置username和password其余为空，则会使用mail.php的配置。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1.driver用于配置默认的邮件发送驱动，Laravel支持多种邮件驱动方式，包括smtp、Mailgun、Maildrill、</div><div class="line">Amazon SES、mail和sendmail，Mailgun和Amazon SES都是收费的Maildrill目前不支持中国区用户，这三个</div><div class="line">都是第三方邮件服务。mail驱动使用PHP提供的mail函数发送，sendmail驱动通过Sendmail/Postfix（Linux）</div><div class="line">提供的命令发送邮件，smtp驱动通过支持ESMTP的SMTP发送邮件。</div><div class="line">就目前状况来看，使用smtp是最明智的选择，mail不安全，sendmail需要安装配置Sendmail/Postfix，其他要</div><div class="line">么付费要么不能用。</div><div class="line"></div><div class="line">2.host是邮箱所在主机，比如我们使用163邮箱，对应值是smtp.163.com，使用QQ邮箱的话，对应值是smtp.qq.com。</div><div class="line"></div><div class="line">3.port用于配置邮箱发送服务端口号，比如一般默认值是25，但如果设置SMTP使用SSL加密，该值为465。</div><div class="line">from配置项包含address和name，前者表示发送邮箱，后者表示发送邮件使用的用户名。</div><div class="line"></div><div class="line">4.encryption表示加密类型，可以设置为null表示不使用任何加密，也可以设置为tls或ssl。</div><div class="line">username表示邮箱账号，比如yaojinbu@163.com</div><div class="line"></div><div class="line">5.password表示上述邮箱登录对应登录密码。注意QQ邮箱的话应该开启POP3|SMTP服务时给的密钥。</div><div class="line">sendmail是在设置driver为sendmail时使用，用于指定sendmail命令路径。</div></pre></td></tr></table></figure>
-<h5 id="开始编写控制器、路由、模板。"><a href="#开始编写控制器、路由、模板。" class="headerlink" title="开始编写控制器、路由、模板。"></a>开始编写控制器、路由、模板。</h5><p>在路由中加入如下规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::get(‘mail/send’,’MailController@send’);</div></pre></td></tr></table></figure></p>
-<h5 id="生成控制器"><a href="#生成控制器" class="headerlink" title="生成控制器"></a>生成控制器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make::controller MailController</div></pre></td></tr></table></figure>
-<p>在laravel/app/Http/Controllers生成了一个MailController控制器，如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/MailController.php</div><div class="line">&lt;?php</div><div class="line">namespace App\Http\Controllers;</div><div class="line">use Illuminate\Http\Request;</div><div class="line">use App\Http\Requests;</div><div class="line">use App\Http\Controllers\Controller;</div><div class="line">class MailController extends Controller</div><div class="line">&#123;</div><div class="line">//</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h5 id="编辑控制器，加入以下的逻辑处理"><a href="#编辑控制器，加入以下的逻辑处理" class="headerlink" title="编辑控制器，加入以下的逻辑处理"></a>编辑控制器，加入以下的逻辑处理</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">use Mail;</div><div class="line">class MailController&#123;</div><div class="line">public <span class="keyword">function</span> <span class="function"><span class="title">send</span></span>()</div><div class="line">&#123;</div><div class="line"><span class="variable">$name</span> = ‘daisy’;</div><div class="line"><span class="variable">$flag</span> = Mail::send(‘emails.test’,[‘name’=&gt;<span class="variable">$name</span>],<span class="keyword">function</span>(<span class="variable">$message</span>)&#123;</div><div class="line"><span class="variable">$to</span> = ‘88888888@qq.com’;</div><div class="line"><span class="variable">$message</span> -&gt;to(<span class="variable">$to</span>)-&gt;subject(‘邮件测试’);</div><div class="line">&#125;);</div><div class="line"><span class="keyword">if</span>(<span class="variable">$flag</span>)&#123;</div><div class="line"><span class="built_in">echo</span> ‘发送邮件成功，请查收！’;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line"><span class="built_in">echo</span> ‘发送邮件失败，请重试！’;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Mail::send();需要传三个参数，第一个为引用的模板，第二个为给模板传递的变量，第三个为一个闭包，参数绑定Mail类的一个实例。<br>在resources/emails下创建一个模板文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test.blade.php</div><div class="line">你好，这是一封测试文件。</div></pre></td></tr></table></figure></p>
-<p>好，现在在服务器上进行测试了，在地址栏输入**.com/mail/send，发送成功。</p>
+                <hr>
+<h2 id="简单说下memcache和redis的区别："><a href="#简单说下memcache和redis的区别：" class="headerlink" title="简单说下memcache和redis的区别："></a>简单说下memcache和redis的区别：</h2><p>1 、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</p>
+<p>2 、Redis支持数据的备份，即master-slave模式的数据备份。</p>
+<p>3 、Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用。</p>
+<p>通常redis以下几种数据类型：</p>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>常用命令：set，get，decr，incr，mget</p>
+<p>Strings 数据结构是简单的key-value类型，value其实不仅是String，也可以是数字.<br>常用命令:  set,get,decr,incr,mget 等。</p>
+<h3 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h3><p>String是最常用的一种数据类型，普通的key/ value 存储都可以归为此类.即可以完全实现目前 Memcached 的功能，并且效率更高。还可以享受Redis的定时持久化，操作日志及 Replication等功能。除了提供与 Memcached 一样的get、set、incr、decr 等操作外，Redis还提供了下面一些操作：</p>
+<p>1.获取字符串的长度</p>
+<p>2.往字符串里面append内容</p>
+<p>3.设置和获取字符串的某一段内容</p>
+<p>4.设置和获取字符串的某一位（bit）</p>
+<p>5.批量设置一系列字符串的内容</p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>常用命令：l/rpush，lrange，l/rpop等</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>Redis list的应用场景非常多，也是Redis最重要的数据结构之一，比如twitter的关注列表，粉丝列表等都可以用Redis的list结构来实现。</p>
+<p>Lists 就是链表，使用Lists结构，我们可以轻松地实现最新消息排行等功能。Lists的另一个应用就是消息队列，<br>可以利用Lists的PUSH操作，将任务存在Lists中，然后工作线程再用POP操作将任务取出进行执行。Redis还提供了操作Lists中某一段的api，你可以直接查询，删除Lists中某一段的元素</p>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>常用命令：sadd，spop，sunion，smembers等</p>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><p>Redis set对外提供的功能与list类似是一个列表的功能，特殊之处在于set是可以自动排重的，当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的。</p>
+<p>Sets 集合的概念就是一堆不重复值的组合。利用Redis提供的Sets数据结构，可以存储一些集合性的数据，比如在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis还为集合提供了求交集、并集、差集等操作，可以非常方便的实现如共同关注、共同喜好、二度好友等功能，对上面的所有集合操作，你还可以使用不同的命令选择将结果返回给客户端还是存集到一个新的集合中。</p>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>常用命令：hset，hget，hgetall</p>
+<h4 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h4><p>在Memcached中，我们经常将一些结构化的信息打包成HashMap，在客户端序列化后存储为一个字符串的值，比如用户的昵称、年龄、性别、积分等，这时候在需要修改其中某一项时，通常需要将所有值取出反序列化后，修改某一项的值，再序列化存储回去。这样不仅增大了开销，也不适用于一些可能并发操作的场合（比如两个并发的操作都需要修改积分）。而Redis的Hash结构可以使你像在数据库中Update一个属性一样只修改某一项属性值。</p>
+<h3 id="pub-sub"><a href="#pub-sub" class="headerlink" title="pub/sub"></a>pub/sub</h3><p>Pub/Sub 从字面上理解就是发布（Publish）与订阅（Subscribe），在Redis中，你可以设定对某一个key值进行消息发布及消息订阅，当一个key值上进行了消息发布后，所有订阅它的客户端都会收到相应的消息。这一功能最明显的用法就是用作实时消息系统，比如普通的即时聊天，群聊等功能。<br>当然现在基本很少使用这个功能做实时聊天了。</p>
 
 
                 <hr>
@@ -194,12 +205,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/07/14/mysql相关/" data-toggle="tooltip" data-placement="top" title="mysql相关">&larr; Previous Post</a>
+                            <a href="/2016/12/03/laravel之邮件发送/" data-toggle="tooltip" data-placement="top" title="laravel之邮件发送">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/01/01/redis/" data-toggle="tooltip" data-placement="top" title="redis 数据类型">Next Post &rarr;</a>
+                            <a href="/2017/03/14/优化索引/" data-toggle="tooltip" data-placement="top" title="优化索引">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -208,9 +219,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/12/03/laravel之邮件发送/"
-                        data-title="laravel之邮件发送"
-                        data-url="http://yoursite.com/2016/12/03/laravel之邮件发送/" >
+                        data-thread-key="2017/01/01/redis/"
+                        data-title="redis 数据类型"
+                        data-url="http://yoursite.com/2017/01/01/redis/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -236,7 +247,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#laravel" title="laravel">laravel</a>
+                          <a class="tag" href="/tags/#redis" title="redis">redis</a>
                         
                     </div>
                 </section>
